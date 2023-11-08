@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @template T of User
+ *
  * @extends Builder<T>
  */
 class UserQueryBuilder extends Builder
 {
     /**
      * Add user filters
-     *
-     * @return self
      */
     public function filters(): self
     {
@@ -23,20 +22,18 @@ class UserQueryBuilder extends Builder
             ->with(['role', 'role.permissions', 'logs', 'logs.causer'])
             ->when(
                 request('search'),
-                fn($query) => $query
-                    ->where('name', 'LIKE', '%' . request('search') . '%')
-                    ->orWhere('email', 'LIKE', '%' . request('search') . '%')
-                    ->orWhereHas('role', fn($query) => $query->where('name', 'LIKE', '%' . request('search') . '%'))
+                fn ($query) => $query
+                    ->where('name', 'LIKE', '%'.request('search').'%')
+                    ->orWhere('email', 'LIKE', '%'.request('search').'%')
+                    ->orWhereHas('role', fn ($query) => $query->where('name', 'LIKE', '%'.request('search').'%'))
             )->when(
                 request('entries'),
-                fn($query) => $query->limit(request('entries'))
+                fn ($query) => $query->limit(request('entries'))
             );
     }
 
     /**
      * Add role filters
-     *
-     * @return self
      */
     public function whereRole(): self
     {
@@ -47,11 +44,10 @@ class UserQueryBuilder extends Builder
         })->where(function ($query) use ($search) {
             if ($search) {
                 $query->where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search . '%')
-                        ->orWhere('email', 'LIKE', '%' . $search . '%');
+                    $query->where('name', 'LIKE', '%'.$search.'%')
+                        ->orWhere('email', 'LIKE', '%'.$search.'%');
                 });
             }
         });
     }
-
 }

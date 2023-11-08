@@ -15,7 +15,7 @@ use Tests\TestCase;
 
 class UpdateNotificationActionTest extends TestCase
 {
-    use  RefreshDatabase,WithFaker;
+    use RefreshDatabase,WithFaker;
 
     /** @test
      *
@@ -34,7 +34,7 @@ class UpdateNotificationActionTest extends TestCase
             'name' => 'update notification',
             'description' => 'Update a notification',
             'guard_name' => 'web',
-            'module_id' => 1
+            'module_id' => 1,
         ]);
         $role->permissions()->attach($permission);
         $user->roles()->attach($role);
@@ -56,7 +56,7 @@ class UpdateNotificationActionTest extends TestCase
             'long_description' => $this->faker->text,
             'course_id' => $this->faker->numberBetween(1, 10),
             'notification_type_id' => $notificationType->id,
-            'users' => [$user->id]
+            'users' => [$user->id],
         ]);
 
         // update data to notification table
@@ -69,7 +69,7 @@ class UpdateNotificationActionTest extends TestCase
             'long_description' => $this->faker->text,
             'course_id' => $this->faker->numberBetween(1, 10),
             'notification_type_id' => $notificationType->id,
-            'users' => [$user->id]
+            'users' => [$user->id],
 
         ]);
 

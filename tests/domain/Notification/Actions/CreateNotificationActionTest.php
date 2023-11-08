@@ -32,7 +32,7 @@ class CreateNotificationActionTest extends TestCase
             'name' => 'create notification',
             'description' => 'Create a notification',
             'guard_name' => 'web',
-            'module_id' => 1
+            'module_id' => 1,
         ]);
         $role->permissions()->attach($permission);
         $user->roles()->attach($role);
@@ -53,7 +53,7 @@ class CreateNotificationActionTest extends TestCase
             'long_description' => $this->faker->text,
             'course_id' => $this->faker->numberBetween(1, 10),
             'notification_type_id' => $notificationType->id,
-            'users' => [$user->id]
+            'users' => [$user->id],
 
         ]);
         $response->assertStatus(200);

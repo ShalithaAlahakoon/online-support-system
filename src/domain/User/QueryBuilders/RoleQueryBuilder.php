@@ -2,19 +2,18 @@
 
 namespace Domain\User\QueryBuilders;
 
-use Illuminate\Database\Eloquent\Builder;
 use Domain\User\Models\Role;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @template T of Role
+ *
  * @extends Builder<T>
  */
 class RoleQueryBuilder extends Builder
 {
     /**
      *  Add role filters
-     *
-     * @return self
      */
     public function filters(): self
     {

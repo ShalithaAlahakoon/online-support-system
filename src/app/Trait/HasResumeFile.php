@@ -10,10 +10,6 @@ trait HasResumeFile
 {
     /**
      * Update the instructor's resume file.
-     *
-     * @param UploadedFile $file
-     * @param string $storagePath
-     * @return void
      */
     public function updateResumeFile(UploadedFile $file, string $storagePath = 'instructor-resume'): void
     {
@@ -32,8 +28,6 @@ trait HasResumeFile
 
     /**
      * Delete the instructor's resume file.
-     *
-     * @return void
      */
     public function deleteResumeFile(): void
     {
@@ -50,8 +44,6 @@ trait HasResumeFile
 
     /**
      * Get the URL to the user's profile photo.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function resumeUrl(): Attribute
     {
@@ -64,8 +56,6 @@ trait HasResumeFile
 
     /**
      * Get the disk that profile photos should be stored on.
-     *
-     * @return string
      */
     protected function instructorResumeDisk(): string
     {

@@ -11,13 +11,12 @@ use Domain\User\Actions\DeleteUserAction;
 use Domain\User\Actions\UpdateUserAction;
 use Domain\User\DataTransferObjects\UserFormData;
 use Domain\User\Models\User;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
-use Exception;
 use Inertia\Response;
 use Laravel\Jetstream\Jetstream;
 use Spatie\Permission\Models\Role;
@@ -25,6 +24,7 @@ use Spatie\Permission\Models\Role;
 class UserPageController extends Controller
 {
     use PasswordValidationRules;
+
     /**
      * Show the general users information screen.
      */
@@ -32,7 +32,7 @@ class UserPageController extends Controller
     {
         return Jetstream::inertia()->render($request, 'User/Index', [
             'users' => User::query()->filters()->paginate(request('entries') ?? 10)->appends($request->except('page')),
-            'requestParam' => $request->all() ?? null
+            'requestParam' => $request->all() ?? null,
         ]);
     }
 
@@ -48,16 +48,11 @@ class UserPageController extends Controller
 
     /**
      * Store a newly created user resource in storage.
-     *
-     * @param UserFormRequest $userFormRequest
-     * @param CreateUserAction $createUserAction
-     * @return Response
      */
     public function store(
-        UserFormRequest  $userFormRequest,
+        UserFormRequest $userFormRequest,
         CreateUserAction $createUserAction
-    ): Response
-    {
+    ): Response {
         try {
             $createUserAction(
                 new UserFormData(
@@ -78,21 +73,18 @@ class UserPageController extends Controller
 
             return Jetstream::inertia()->render($userFormRequest, 'User/Index', [
                 'users' => User::query()->filters()->paginate(10),
-                'message' => 'User successfully created.'
+                'message' => 'User successfully created.',
             ]);
         } catch (Exception $exception) {
             return Jetstream::inertia()->render($userFormRequest, 'User/Index', [
                 'users' => User::query()->filters()->paginate(10),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }
 
     /**
      * Show the edit user information screen.
-     *
-     * @param User $user
-     * @return Response
      */
     public function edit(User $user): Response
     {
@@ -102,12 +94,8 @@ class UserPageController extends Controller
         ]);
     }
 
-
     /**
      * Show the edit user information screen.
-     *
-     * @param User $user
-     * @return Response
      */
     public function show(User $user): Response
     {
@@ -116,12 +104,8 @@ class UserPageController extends Controller
         ]);
     }
 
-
     /**
      * Show the log user information screen.
-     *
-     * @param User $user
-     * @return Response
      */
     public function logShow(User $user): Response
     {
@@ -130,61 +114,47 @@ class UserPageController extends Controller
         ]);
     }
 
-
     /**
      * Login into system as user.
-     *
-     * @param User $user
-     * @return RedirectResponse
      */
     public function loginAsUser(User $user): RedirectResponse
     {
         Auth::login($user);
+
         return redirect()->intended('dashboard');
     }
 
-
     /**
      * Admin change user password.
-     * @param AdminChangePasswordRequest $adminChangePasswordRequest
-     * @param User $user
-     * @return Response
      */
     public function adminChangePassword(
         AdminChangePasswordRequest $adminChangePasswordRequest,
         User $user
-    ): Response
-    {
+    ): Response {
         try {
             $user->update([
-                'password' => bcrypt($adminChangePasswordRequest->password)
+                'password' => bcrypt($adminChangePasswordRequest->password),
             ]);
 
             return Jetstream::inertia()->render($adminChangePasswordRequest, 'User/Index', [
                 'users' => User::query()->filters()->paginate(request('entries') ?? 10),
             ]);
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             return Jetstream::inertia()->render($adminChangePasswordRequest, 'User/Index', [
                 'users' => User::query()->filters()->paginate(request('entries') ?? 10),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }
 
     /**
      * Update User.
-     *
-     * @param UserFormRequest $userFormRequest
-     * @param UpdateUserAction $updateUserAction
-     * @param User $user
-     * @return Response
      */
     public function update(
         UserFormRequest $userFormRequest,
         UpdateUserAction $updateUserAction,
         User $user
-    ): Response
-    {
+    ): Response {
         try {
             $updateUserAction(
                 new UserFormData(
@@ -206,22 +176,18 @@ class UserPageController extends Controller
 
             return Jetstream::inertia()->render($userFormRequest, 'User/Index', [
                 'users' => User::query()->filters()->paginate(10),
-                'message' => 'User successfully updated.'
+                'message' => 'User successfully updated.',
             ]);
         } catch (Exception $exception) {
             return Jetstream::inertia()->render($userFormRequest, 'User/Index', [
                 'users' => User::query()->filters()->paginate(10),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }
 
     /**
      * Delete a user
-     *
-     * @param DeleteUserAction $deleteUserAction
-     * @param User $user
-     * @return Response
      */
     public function destroy(DeleteUserAction $deleteUserAction, User $user): Response
     {
@@ -230,12 +196,12 @@ class UserPageController extends Controller
 
             return Jetstream::inertia()->render(request(), 'User/Index', [
                 'users' => User::query()->filters()->paginate(10),
-                'message' => 'User successfully deleted.'
+                'message' => 'User successfully deleted.',
             ]);
         } catch (Exception $exception) {
             return Jetstream::inertia()->render(request(), 'User/Index', [
                 'users' => User::query()->filters()->paginate(10),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }
@@ -243,7 +209,6 @@ class UserPageController extends Controller
     /**
      *  Delete image for user
      *
-     * @param User $user
      * @return void|Response
      */
     public function imageDestroy(User $user): Response
@@ -254,24 +219,25 @@ class UserPageController extends Controller
                     'user' => $user,
                     'roles' => Role::query()->get(),
                     'countries' => Country::query()->get(),
-                    'error' => 'Not found a photo path'
+                    'error' => 'Not found a photo path',
                 ]);
             }
 
             Storage::disk(isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public'))->delete($user->profile_photo_path);
 
             $user->update(['profile_photo_path' => null]);
+
             return Jetstream::inertia()->render(request(), 'User/Edit', [
                 'user' => $user,
                 'roles' => Role::query()->get(),
-                'countries' => Country::query()->get()
+                'countries' => Country::query()->get(),
             ]);
         } catch (Exception $exception) {
             return Jetstream::inertia()->render(request(), 'User/Edit', [
                 'user' => $user,
                 'roles' => Role::query()->get(),
                 'countries' => Country::query()->get(),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }

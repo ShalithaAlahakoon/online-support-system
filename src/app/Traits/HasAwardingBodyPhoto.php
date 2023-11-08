@@ -11,7 +11,6 @@ trait HasAwardingBodyPhoto
     /**
      * Update the awarding body photo.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasAwardingBodyPhoto
 
     /**
      * Get the URL to the awarding body photo.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function awardingBodyPhotoUrl(): Attribute
     {
@@ -63,8 +60,6 @@ trait HasAwardingBodyPhoto
                 : '';
         });
     }
-
-
 
     /**
      * Get the disk that awarding body photos should be stored on.

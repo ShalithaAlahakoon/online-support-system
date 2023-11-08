@@ -7,11 +7,11 @@ use Domain\User\Actions\CreateRoleAction;
 use Domain\User\Actions\DeleteRoleAction;
 use Domain\User\Actions\UpdateRoleAction;
 use Domain\User\DataTransferObjects\RoleFormData;
-use Domain\User\Models\Role;
 use Domain\User\Models\Module;
+use Domain\User\Models\Role;
+use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Exception;
 use Inertia\Response;
 use Laravel\Jetstream\Jetstream;
 
@@ -24,7 +24,7 @@ class RolePageController extends Controller
     {
         return Jetstream::inertia()->render($request, 'Role/Index', [
             'roles' => Role::query()->filters()->paginate(request('entries') ?? 10)->appends($request->except('page')),
-            'requestParam' => $request->all() ?? null
+            'requestParam' => $request->all() ?? null,
         ]);
     }
 
@@ -40,15 +40,11 @@ class RolePageController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param RoleFormRequest $roleFormRequest
-     * @param CreateRoleAction $createRoleAction
-     * @return Response
      */
     public function store(
         RoleFormRequest $roleFormRequest,
         CreateRoleAction $createRoleAction
-    ): Response
-    {
+    ): Response {
         try {
             $createRoleAction(
                 new RoleFormData(
@@ -62,12 +58,12 @@ class RolePageController extends Controller
 
             return Jetstream::inertia()->render($roleFormRequest, 'Role/Index', [
                 'users' => Role::query()->paginate(10),
-                'message' => 'Role successfully created.'
+                'message' => 'Role successfully created.',
             ]);
         } catch (Exception $exception) {
             return Jetstream::inertia()->render($roleFormRequest, 'Role/Index', [
                 'users' => Role::query()->paginate(10),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }
@@ -83,7 +79,6 @@ class RolePageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Role $role
      * @return Response
      */
     public function edit(Role $role)
@@ -91,24 +86,20 @@ class RolePageController extends Controller
         return Jetstream::inertia()->render(request(), 'Role/Edit', [
             'role' => $role,
             'modules' => Module::query()->with('permissions')->get(),
-            'permissionIds' => $role->permissions->pluck('id')
+            'permissionIds' => $role->permissions->pluck('id'),
         ]);
     }
 
     /**
      *  Update the specified resource in storage.
      *
-     * @param RoleFormRequest $roleFormRequest
-     * @param UpdateRoleAction $updateRoleAction
-     * @param Role $role
      * @return Response
      */
     public function update(
         RoleFormRequest $roleFormRequest,
         UpdateRoleAction $updateRoleAction,
         Role $role
-    )
-    {
+    ) {
         try {
             $updateRoleAction(
                 new RoleFormData(
@@ -123,12 +114,12 @@ class RolePageController extends Controller
 
             return Jetstream::inertia()->render($roleFormRequest, 'Role/Index', [
                 'roles' => Role::query()->filters()->paginate(10),
-                'message' => 'Role successfully updated.'
+                'message' => 'Role successfully updated.',
             ]);
         } catch (Exception $exception) {
             return Jetstream::inertia()->render($roleFormRequest, 'User/Index', [
                 'users' => Role::query()->filters()->paginate(10),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }
@@ -140,14 +131,15 @@ class RolePageController extends Controller
     {
         try {
             $deleteRoleAction($role);
+
             return Jetstream::inertia()->render(request(), 'Role/Index', [
                 'roles' => Role::query()->filters()->paginate(10),
-                'message' => 'Role successfully deleted.'
+                'message' => 'Role successfully deleted.',
             ]);
         } catch (Exception $exception) {
             return Jetstream::inertia()->render(request(), 'User/Index', [
                 'roles' => Role::query()->filters()->paginate(10),
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ]);
         }
     }

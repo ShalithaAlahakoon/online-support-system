@@ -3,18 +3,16 @@
 namespace Domain\User\Actions;
 
 use App\Http\Resources\UserResource;
+use Domain\User\DataTransferObjects\UserFormData;
 use Domain\User\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Domain\User\DataTransferObjects\UserFormData;
 
 class CreateUserAction
 {
     /**
      * Store user action.
      *
-     * @param UserFormData $userFormData
-     * @return UserResource
      * @throws Exception
      */
     public function __invoke(UserFormData $userFormData): UserResource
@@ -41,7 +39,7 @@ class CreateUserAction
                 $user->updateProfilePhoto($userFormData->photo);
             }
 
-            if ($userFormData->roleId){
+            if ($userFormData->roleId) {
                 $user->assignRole($userFormData->roleId);
             }
 

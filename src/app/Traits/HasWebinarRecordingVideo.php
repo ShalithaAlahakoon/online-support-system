@@ -11,7 +11,6 @@ trait HasWebinarRecordingVideo
     /**
      * Update the webinar recorded video.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasWebinarRecordingVideo
 
     /**
      * Get the URL to the webinar recorded video.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function WebinarRecordingVideoUrl(): Attribute
     {

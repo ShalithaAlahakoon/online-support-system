@@ -3,17 +3,15 @@
 namespace App;
 
 use Illuminate\Support\Facades\Auth;
+use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Laravel\Jetstream\Contracts\AddsTwoFactorAuthentication;
 use Laravel\Jetstream\Contracts\DeletesUsers;
-use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
-
 
 class Features
 {
     /**
      * Determine if the given feature is enabled.
      *
-     * @param  string  $feature
      * @return bool
      */
     public static function enabled(string $feature)
@@ -24,8 +22,6 @@ class Features
     /**
      * Determine if the feature is enabled and has a given option enabled.
      *
-     * @param  string  $feature
-     * @param  string  $option
      * @return bool
      */
     public static function optionEnabled(string $feature, string $option)
@@ -117,7 +113,6 @@ class Features
     /**
      * Enable the teams feature.
      *
-     * @param  array  $options
      * @return string
      */
     public static function teams(array $options = [])
@@ -156,28 +151,28 @@ class Features
      * @param  array  $options
      * @return string
      */
-//    public static function twoFactorAuthentication(array $options = [])
-//    {
-//        $user = Auth::user();
-//
-//        if ($options['confirmPassword'] ?? false) {
-//            app(UpdatesUserProfileInformation::class)->update($user, [
-//                'password' => $options['password'],
-//            ]);
-//        }
+    //    public static function twoFactorAuthentication(array $options = [])
+    //    {
+    //        $user = Auth::user();
+    //
+    //        if ($options['confirmPassword'] ?? false) {
+    //            app(UpdatesUserProfileInformation::class)->update($user, [
+    //                'password' => $options['password'],
+    //            ]);
+    //        }
 
-//        app(AddsTwoFactorAuthentication::class)->enable($user);
-//        return 'two-factor-authentication';
-//    }
+    //        app(AddsTwoFactorAuthentication::class)->enable($user);
+    //        return 'two-factor-authentication';
+    //    }
 
-//    /**
-//     * Disable two-factor authentication for the given user.
-//     *
-//     * @param  mixed  $user
-//     * @return void
-//     */
-//    public static function disableTwoFactorAuthentication($user)
-//    {
-//        app(DeletesUsers::class)->delete($user->fresh());
-//    }
+    //    /**
+    //     * Disable two-factor authentication for the given user.
+    //     *
+    //     * @param  mixed  $user
+    //     * @return void
+    //     */
+    //    public static function disableTwoFactorAuthentication($user)
+    //    {
+    //        app(DeletesUsers::class)->delete($user->fresh());
+    //    }
 }

@@ -11,7 +11,6 @@ trait HasTutorImage
     /**
      * Update the tutor image.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasTutorImage
 
     /**
      * Get the URL to the tutor image.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function TutorImageUrl(): Attribute
     {

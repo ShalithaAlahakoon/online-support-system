@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\DifferentPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserFormRequest extends FormRequest
@@ -28,25 +27,25 @@ class UserFormRequest extends FormRequest
                 'fname' => ['required', 'string', 'min:3', 'max:255', 'regex:/^[^0-9]+$/i', 'regex:/^[a-zA-Z\s]+$/i'],
                 'lname' => ['required', 'string', 'min:3', 'max:255', 'regex:/^[^0-9]+$/i', 'regex:/^[a-zA-Z\s]+$/i'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'name' => ['required', 'string', 'min:3',],
+                'name' => ['required', 'string', 'min:3'],
                 'password' => ['required', 'required_with:password_confirmation', 'min:8', 'max:8', 'same:password_confirmation',
                     function ($attribute, $value, $fail) {
-                        if (!preg_match('/[!@#$%^&*()\-_=+{};:,<.>]/', $value)) {
+                        if (! preg_match('/[!@#$%^&*()\-_=+{};:,<.>]/', $value)) {
                             $fail("The $attribute must contain at least one special character.");
                         }
                     },
                     function ($attribute, $value, $fail) {
-                        if (!preg_match('/\d/', $value)) {
+                        if (! preg_match('/\d/', $value)) {
                             $fail("The $attribute must contain at least one integer.");
                         }
                     },
                     function ($attribute, $value, $fail) {
-                        if (!preg_match('/[a-z]/', $value)) {
+                        if (! preg_match('/[a-z]/', $value)) {
                             $fail("The $attribute must contain at least one lowercase letter.");
                         }
                     },
                     function ($attribute, $value, $fail) {
-                        if (!preg_match('/[A-Z]/', $value)) {
+                        if (! preg_match('/[A-Z]/', $value)) {
                             $fail("The $attribute must contain at least one uppercase letter.");
                         }
                     }],
@@ -72,6 +71,7 @@ class UserFormRequest extends FormRequest
                 'country_id' => ['required'],
             ];
         }
+
         return $rules;
     }
 

@@ -11,7 +11,6 @@ trait HasWebinarRecordingThumbnail
     /**
      * Update the recording thumbnail.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasWebinarRecordingThumbnail
 
     /**
      * Get the URL to the recording thumbnail.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function RecordingThumbnailUrl(): Attribute
     {

@@ -7,9 +7,9 @@ use App\Http\Requests\UserFormRequest;
 use Domain\User\Actions\CreateUserAction;
 use Domain\User\DataTransferObjects\UserFormData;
 use Domain\User\Models\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Exception;
 use Illuminate\Http\Response;
 
 class UserController extends Controller
@@ -20,24 +20,19 @@ class UserController extends Controller
     public function index()
     {
         return response()->json([
-                'users' => User::query()
-                    ->filters()
-                    ->paginate(request('entries') ?? 10)
-            ], Response::HTTP_OK);
+            'users' => User::query()
+                ->filters()
+                ->paginate(request('entries') ?? 10),
+        ], Response::HTTP_OK);
     }
 
     /**
      * Store a newly created user resource in storage.
-     *
-     * @param UserFormRequest $userFormRequest
-     * @param CreateUserAction $createUserAction
-     * @return JsonResponse
      */
     public function store(
-        UserFormRequest  $userFormRequest,
+        UserFormRequest $userFormRequest,
         CreateUserAction $createUserAction
-    ): JsonResponse
-    {
+    ): JsonResponse {
         try {
             return response()->json(
                 $createUserAction(

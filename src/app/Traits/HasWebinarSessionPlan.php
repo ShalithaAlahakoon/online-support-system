@@ -11,7 +11,6 @@ trait HasWebinarSessionPlan
     /**
      * Update the webinar brochure.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasWebinarSessionPlan
 
     /**
      * Get the URL to the webinar brochure.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function WebinarSessionPlanUrl(): Attribute
     {

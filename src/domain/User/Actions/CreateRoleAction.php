@@ -13,8 +13,6 @@ class CreateRoleAction
     /**
      * Store role action.
      *
-     * @param RoleFormData $roleFormData
-     * @return RoleResource
      * @throws Exception
      */
     public function __invoke(RoleFormData $roleFormData): RoleResource
@@ -33,6 +31,7 @@ class CreateRoleAction
             $role->givePermissionTo($roleFormData->permissions);
 
             DB::commit();
+
             return new RoleResource($role);
         } catch (Exception $e) {
             DB::rollBack();

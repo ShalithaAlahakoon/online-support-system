@@ -22,9 +22,9 @@ class ReplyTicketFormRequest extends FormRequest
     public function rules(): array
     {
 
-        return [              
-                'ticket_reply_message' => ['required'],
-        ]; 
-        
+        return [
+            'ticket_reply_message' => ['required'],
+        ];
+
     }
 }

@@ -33,13 +33,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Super Admin',
             'email' => 'admin@onlinesupportsystem.com',
-            'role_id' => 1
+            'role_id' => 1,
         ]);
 
         User::factory()->create([
             'name' => 'Support Agent',
             'email' => 'support@onlinesupportsystem.com',
-            'role_id' => 2
+            'role_id' => 2,
         ]);
 
         $adminUser = User::where('name', 'Super Admin')->first();

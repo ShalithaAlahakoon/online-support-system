@@ -1,19 +1,15 @@
 <?php
 
-
 namespace Tests\App\Http\Controllers\API;
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Requests\UserFormRequest;
 use Domain\User\Actions\CreateUserAction;
-use Domain\User\DataTransferObjects\UserFormData;
-use Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Tests\TestCase;
-use Database\Factories\UserFactory;
 
 class UserControllerTest extends TestCase
 {
@@ -25,7 +21,7 @@ class UserControllerTest extends TestCase
         $userFormRequest = new UserFormRequest([
             'name' => 'Test Name',
             'email' => 'test@imperiallearning.co.uk',
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         // Create a mock CreateUserAction object

@@ -11,7 +11,6 @@ trait HasWebinarUniquePerksImage
     /**
      * Update the webinar UniquePerksImage.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasWebinarUniquePerksImage
 
     /**
      * Get the URL to the webinar UniquePerksImage.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function WebinarUniquePerksImageUrl(): Attribute
     {

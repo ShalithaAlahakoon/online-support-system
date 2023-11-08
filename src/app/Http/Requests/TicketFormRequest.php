@@ -2,9 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Domain\Ticket\Models\Ticket;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\RequiredIf;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TicketFormRequest extends FormRequest
@@ -31,13 +28,14 @@ class TicketFormRequest extends FormRequest
                 'name' => ['required'],
                 'email' => ['required', 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
                 'phone_number' => ['required', 'regex:/^(\+\d{1,3}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/'],
-                'problem_description' => ['required'],                
+                'problem_description' => ['required'],
             ];
 
         } elseif ($this->isMethod('PUT')) {
         }
+
         return $rules;
-        
+
     }
 
     /**

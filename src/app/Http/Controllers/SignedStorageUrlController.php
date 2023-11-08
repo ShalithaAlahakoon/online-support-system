@@ -15,7 +15,6 @@ class SignedStorageUrlController extends Controller implements SignedStorageUrlC
     /**
      * Create a new signed URL.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -24,12 +23,12 @@ class SignedStorageUrlController extends Controller implements SignedStorageUrlC
 
         $bucket = $request->input('bucket') ?: $_ENV['AWS_BUCKET'];
 
-//        if (auth()->check()){
-//            Gate::authorize('uploadFiles', [
-//                auth()->user(),
-//                $bucket,
-//            ]);
-//        }
+        //        if (auth()->check()){
+        //            Gate::authorize('uploadFiles', [
+        //                auth()->user(),
+        //                $bucket,
+        //            ]);
+        //        }
 
         $client = $this->storageClient();
 
@@ -43,6 +42,7 @@ class SignedStorageUrlController extends Controller implements SignedStorageUrlC
         );
 
         $uri = $signedRequest->getUri();
+
         return response()->json([
             'uuid' => $uuid,
             'bucket' => $bucket,
@@ -55,8 +55,6 @@ class SignedStorageUrlController extends Controller implements SignedStorageUrlC
     /**
      * Create a command for the PUT operation.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Aws\S3\S3Client  $client
      * @param  string  $bucket
      * @param  string  $key
      * @return \Aws\Command
@@ -76,7 +74,6 @@ class SignedStorageUrlController extends Controller implements SignedStorageUrlC
     /**
      * Get the headers that should be used when making the signed request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \GuzzleHttp\Psr7\Request
      * @return array
      */
@@ -93,7 +90,6 @@ class SignedStorageUrlController extends Controller implements SignedStorageUrlC
     /**
      * Ensure the required environment variables are available.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
     protected function ensureEnvironmentVariablesAreAvailable(Request $request)

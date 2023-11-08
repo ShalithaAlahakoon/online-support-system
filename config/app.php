@@ -171,7 +171,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
-        App\Providers\BroadcastServiceProvider::class
+        App\Providers\BroadcastServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -186,7 +186,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];

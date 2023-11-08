@@ -10,12 +10,8 @@ trait HasReviewVideo
 {
     /**
      * Update the key feature image.
-     *
-     * @param  \Illuminate\Http\UploadedFile  $video
-     * @param string $storagePath
-     * @return void
      */
-    public function updateReviewVideo (UploadedFile $video, string $storagePath = 'reviews-videos'): void
+    public function updateReviewVideo(UploadedFile $video, string $storagePath = 'reviews-videos'): void
     {
         tap($this->video, function ($previous) use ($video, $storagePath) {
 
@@ -34,8 +30,6 @@ trait HasReviewVideo
 
     /**
      * Delete the key feature video.
-     *
-     * @return void
      */
     public function deleteReviewVideo(): void
     {
@@ -53,8 +47,6 @@ trait HasReviewVideo
 
     /**
      * Get the URL to the key feature video.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function reviewVideoUrl(): Attribute
     {
@@ -67,8 +59,6 @@ trait HasReviewVideo
 
     /**
      * Get the disk that videos should be stored on.
-     *
-     * @return string
      */
     protected function reviewVideoDisk(): string
     {

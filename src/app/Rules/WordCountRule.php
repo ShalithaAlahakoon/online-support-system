@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 class WordCountRule implements Rule
 {
     private $min;
+
     private $max;
 
     public function __construct($min, $max)
@@ -18,6 +19,7 @@ class WordCountRule implements Rule
     public function passes($attribute, $value)
     {
         $wordCount = str_word_count($value);
+
         return $wordCount >= $this->min && $wordCount <= $this->max;
     }
 

@@ -3,21 +3,19 @@
 namespace Domain\Ticket\Actions;
 
 use App\Http\Resources\TicketResource;
+use App\Mail\ConfirmTicketEmail;
+use Domain\Ticket\DataTransferObjects\TicketFormData;
 use Domain\Ticket\Models\Ticket;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Domain\Ticket\DataTransferObjects\TicketFormData;
 use Illuminate\Support\Str;
 use Mail;
-use App\Mail\ConfirmTicketEmail;
 
 class CreateTicketAction
 {
     /**
      * Store faq action.
      *
-     * @param TicketFormData $ticketFormData
-     * @return TicketResource
      * @throws Exception
      */
     public function __invoke(TicketFormData $ticketFormData): TicketResource
@@ -25,7 +23,7 @@ class CreateTicketAction
         try {
             DB::beginTransaction();
 
-            $referenceNumber = strtoupper(Str::random(10)) . '-' . date('YmdHis');
+            $referenceNumber = strtoupper(Str::random(10)).'-'.date('YmdHis');
 
             /** @var Ticket $ticket */
             $ticket = Ticket::create([
@@ -34,7 +32,7 @@ class CreateTicketAction
                 'email' => $ticketFormData->email,
                 'problem_description' => $ticketFormData->problemDescription,
                 'phone_number' => $ticketFormData->phoneNumber,
-                'status' => $ticketFormData->status
+                'status' => $ticketFormData->status,
             ]);
 
             Mail::to($ticketFormData->email)->send(new ConfirmTicketEmail($referenceNumber, $ticketFormData->name));

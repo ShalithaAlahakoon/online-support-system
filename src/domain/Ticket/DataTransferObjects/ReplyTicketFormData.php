@@ -8,7 +8,6 @@ class ReplyTicketFormData extends DataTransferObject
 {
     /**
      * ID of the ticket.
-     * @var integer|null
      */
     public ?int $ticketId;
 
@@ -18,5 +17,4 @@ class ReplyTicketFormData extends DataTransferObject
      * @var string
      */
     public ?string $ticketReplyMessage;
-
 }

@@ -11,7 +11,6 @@ trait HasWebinarVideo
     /**
      * Update the webinar video.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasWebinarVideo
 
     /**
      * Get the URL to the webinar video.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function WebinarVideoUrl(): Attribute
     {

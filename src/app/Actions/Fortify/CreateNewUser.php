@@ -6,7 +6,6 @@ use Domain\User\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -32,7 +31,6 @@ class CreateNewUser implements CreatesNewUsers
             'fname.regex' => 'First name should only contain alphabetic characters.',
             'lname.regex' => 'Last name should only contain alphabetic characters.',
         ]);
-
 
         $validator->validate();
 

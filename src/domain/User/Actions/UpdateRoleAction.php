@@ -13,9 +13,6 @@ class UpdateRoleAction
     /**
      * Update role action.
      *
-     * @param RoleFormData $roleFormData
-     * @param Role $role
-     * @return RoleResource
      * @throws Exception
      */
     public function __invoke(RoleFormData $roleFormData, Role $role): RoleResource
@@ -34,6 +31,7 @@ class UpdateRoleAction
             $role->syncPermissions($roleFormData->permissions);
 
             DB::commit();
+
             return new RoleResource($role);
         } catch (Exception $e) {
             DB::rollBack();

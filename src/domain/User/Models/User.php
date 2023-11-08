@@ -2,16 +2,15 @@
 
 namespace Domain\User\Models;
 
-
 use Domain\User\Factories\UserFactory;
 use Domain\User\QueryBuilders\UserQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -28,6 +27,7 @@ class User extends Authenticatable
     use SoftDeletes;
     use HasRoles;
     use LogsActivity;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -51,12 +51,9 @@ class User extends Authenticatable
         'linkedin_id',
         'socialite_picture',
         'profile_photo_path',
-        'terms_and_condition'
+        'terms_and_condition',
     ];
 
-    /**
-     * @return LogOptions
-     */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
@@ -94,18 +91,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
     public function role(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Role::class, 'id', 'role_id');
     }
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function logs(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Activity::class, 'subject_id', 'id')
@@ -113,19 +103,16 @@ class User extends Authenticatable
             ->orderBy('updated_at', 'desc');
     }
 
-
     /**
      * Create a new Eloquent query builder for the model.
      *
-     * @param \Illuminate\Database\Query\Builder $query
-     *
+     * @param  \Illuminate\Database\Query\Builder  $query
      * @return UserQueryBuilder
      */
     public function newEloquentBuilder($query)
     {
         return new UserQueryBuilder($query);
     }
-
 
     /**
      * Create a new factory instance for the model.

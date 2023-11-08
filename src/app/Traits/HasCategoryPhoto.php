@@ -11,7 +11,6 @@ trait HasCategoryPhoto
     /**
      * Update the category photo.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasCategoryPhoto
 
     /**
      * Get the URL to the category photo.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function categoryPhotoUrl(): Attribute
     {
@@ -62,8 +59,6 @@ trait HasCategoryPhoto
                 : '';
         });
     }
-
-
 
     /**
      * Get the disk that category photos should be stored on.

@@ -11,7 +11,6 @@ trait HasPageSectionFieldFile
     /**
      * Update the user's ID card photo.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -50,12 +49,10 @@ trait HasPageSectionFieldFile
 
     /**
      * Get the URL to the user's ID card photo.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function pageSectionfieldFileUrl(): Attribute
     {
-        
+
         return Attribute::get(function () {
             return $this->file_path
                 ? Storage::disk($this->pageSectionFieldFileDisk())->url($this->file_path)

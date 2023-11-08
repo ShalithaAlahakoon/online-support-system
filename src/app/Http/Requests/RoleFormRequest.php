@@ -21,19 +21,20 @@ class RoleFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        if (request()->isMethod('POST')){
+        if (request()->isMethod('POST')) {
             $rules = [
                 'name' => ['required', 'unique:roles'],
                 'status' => ['required'],
                 'description' => ['required'],
             ];
-        }else{
+        } else {
             $rules = [
                 'name' => ['required'],
                 'status' => ['required'],
                 'description' => ['required'],
             ];
         }
-       return $rules;
+
+        return $rules;
     }
 }

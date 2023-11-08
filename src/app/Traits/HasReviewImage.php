@@ -10,12 +10,8 @@ trait HasReviewImage
 {
     /**
      * Update the key feature image.
-     *
-     * @param  \Illuminate\Http\UploadedFile  $photo
-     * @param string $storagePath
-     * @return void
      */
-    public function updateReviewImage (UploadedFile $photo, string $storagePath = 'reviews-images'): void
+    public function updateReviewImage(UploadedFile $photo, string $storagePath = 'reviews-images'): void
     {
         tap($this->image, function ($previous) use ($photo, $storagePath) {
 
@@ -53,8 +49,6 @@ trait HasReviewImage
 
     /**
      * Get the URL to the key feature image.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function reviewImageUrl(): Attribute
     {
@@ -67,8 +61,6 @@ trait HasReviewImage
 
     /**
      * Get the disk that profile photos should be stored on.
-     *
-     * @return string
      */
     protected function reviewImageDisk(): string
     {

@@ -1,23 +1,19 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Artisan;
-
-// models
-use Domain\User\Models\User;
-use Domain\Ticket\Models\Ticket;
-use Domain\User\Models\Role;
-
-
-
-// controllers
-use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\TicketPageController;
 use App\Http\Controllers\RolePageController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\TicketPageController;
+// models
+use App\Http\Controllers\UserPageController;
+use Domain\Ticket\Models\Ticket;
+use Domain\User\Models\Role;
+// controllers
+use Domain\User\Models\User;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +33,8 @@ Route::model('ticket', Ticket::class);
 // Artisan
 Route::get('/cache-clear', function () {
     Artisan::call('cache:clear');
-    dd("Cache is cleared");
+    dd('Cache is cleared');
 });
-
-
 
 // GEL website route list
 Route::get('/', function () {
@@ -53,8 +47,7 @@ Route::get('/', function () {
 });
 
 Route::post('/ticket', [TicketPageController::class, 'store'])
-        ->name('ticket.page.store');
-
+    ->name('ticket.page.store');
 
 // Socialite authentication
 Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])
@@ -83,7 +76,6 @@ Route::middleware([
         '/vapor/signed-storage-url',
         [\App\Http\Controllers\SignedStorageUrlController::class, 'store']
     );
-
 
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
@@ -118,7 +110,6 @@ Route::middleware([
     Route::get('/user/pdf', [UserPageController::class, 'generatePDF'])
         ->name('user.page.pdf');
 
-
     // Ticket domain page routes
     Route::get('/ticket', [TicketPageController::class, 'index'])
         ->name('ticket');
@@ -132,7 +123,6 @@ Route::middleware([
         ->name('ticket.page.restore');
     Route::post('/ticket/reply', [TicketPageController::class, 'sendReply'])
         ->name('ticket.page.reply');
-
 
     // Roles
     Route::get('/role', [RolePageController::class, 'index'])

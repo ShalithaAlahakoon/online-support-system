@@ -11,7 +11,6 @@ trait HasLevelPhoto
     /**
      * Update the level photo.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasLevelPhoto
 
     /**
      * Get the URL to the level photo.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function levelPhotoUrl(): Attribute
     {
@@ -62,8 +59,6 @@ trait HasLevelPhoto
                 : '';
         });
     }
-
-
 
     /**
      * Get the disk that level photos should be stored on.

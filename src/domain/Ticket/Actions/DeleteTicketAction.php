@@ -1,4 +1,5 @@
 <?php
+
 namespace Domain\Ticket\Actions;
 
 use App\Http\Requests\TicketFormRequest;
@@ -8,11 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class DeleteTicketAction
 {
-        /**
+    /**
      * Delete Ticket action.
      *
-     * @param TicketFormRequest $ticketFormRequest
      * @return true
+     *
      * @throws Exception
      */
     public function __invoke(TicketFormRequest $ticketFormRequest)

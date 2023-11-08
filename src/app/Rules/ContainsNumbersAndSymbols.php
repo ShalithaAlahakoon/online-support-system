@@ -13,8 +13,8 @@ class ContainsNumbersAndSymbols implements Rule
         $containsNumbersOrSymbols = preg_match('/[0-9!@#$%^&*(),.?":{}|<>]/', $value) === 1;
 
         // Check if the value doesn't consist only of numbers or only of special characters
-        $isNotOnlyNumbers = !ctype_digit($value);
-        $isNotOnlySymbols = !ctype_punct($value);
+        $isNotOnlyNumbers = ! ctype_digit($value);
+        $isNotOnlySymbols = ! ctype_punct($value);
 
         return $containsLetters || $containsNumbersOrSymbols || $isNotOnlyNumbers || $isNotOnlySymbols;
     }

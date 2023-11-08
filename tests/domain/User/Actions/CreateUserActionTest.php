@@ -4,7 +4,6 @@ namespace Tests\Domain\User\Actions;
 
 use Domain\User\Actions\CreateUserAction;
 use Domain\User\DataTransferObjects\UserFormData;
-use Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;

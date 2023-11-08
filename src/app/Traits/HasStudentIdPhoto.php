@@ -11,7 +11,6 @@ trait HasStudentIdPhoto
     /**
      * Update the user's ID card photo.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -50,12 +49,10 @@ trait HasStudentIdPhoto
 
     /**
      * Get the URL to the user's ID card photo.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function idCardPhotoUrl(): Attribute
     {
-        
+
         return Attribute::get(function () {
             return $this->image
                 ? Storage::disk($this->idCardImageDisk())->url($this->image)

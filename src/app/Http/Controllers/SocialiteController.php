@@ -10,26 +10,22 @@ class SocialiteController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     *
      */
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
+
     /**
      * Create a new controller instance.
-     *
-     *
      */
     public function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();
     }
+
     /**
      * Create a new controller instance.
-     *
-     *
      */
     public function redirectToLinkedin()
     {
@@ -38,8 +34,6 @@ class SocialiteController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     *
      */
     public function handleGoogleCallback()
     {
@@ -60,7 +54,7 @@ class SocialiteController extends Controller
                     'name' => $user->name,
                     'google_id' => $user->id,
                     'password' => encrypt('123456dummy'),
-                    'socialite_picture' => $user->getAvatar()
+                    'socialite_picture' => $user->getAvatar(),
                 ]);
 
                 Auth::login($newUser);
@@ -75,8 +69,6 @@ class SocialiteController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     *
      */
     public function handleFacebookCallback()
     {
@@ -97,7 +89,7 @@ class SocialiteController extends Controller
                     'name' => $user->name,
                     'fb_id' => $user->id,
                     'password' => encrypt('123456dummy'),
-                    'socialite_picture' => $user->getAvatar()
+                    'socialite_picture' => $user->getAvatar(),
                 ]);
 
                 Auth::login($newUser);
@@ -112,8 +104,6 @@ class SocialiteController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     *
      */
     public function handleLinkedinCallback()
     {
@@ -134,7 +124,7 @@ class SocialiteController extends Controller
                     'name' => $user->name,
                     'linkedin_id' => $user->id,
                     'password' => encrypt('123456dummy'),
-                    'socialite_picture' => $user->getAvatar()
+                    'socialite_picture' => $user->getAvatar(),
                 ]);
 
                 Auth::login($newUser);

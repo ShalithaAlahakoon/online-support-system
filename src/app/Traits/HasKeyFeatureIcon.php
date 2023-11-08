@@ -11,7 +11,6 @@ trait HasKeyFeatureIcon
     /**
      * Update the key feature icon.
      *
-     * @param  \Illuminate\Http\UploadedFile  $photo
      * @param  string  $storagePath
      * @return void
      */
@@ -51,8 +50,6 @@ trait HasKeyFeatureIcon
 
     /**
      * Get the URL to the key feature icon.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function KeyFeatureIconUrl(): Attribute
     {

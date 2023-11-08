@@ -1,9 +1,7 @@
 <?php
 
-
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-
-
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // User domain routes
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -30,6 +26,4 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/user', [UserController::class, 'store'])->name('user.store');
     Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
-
 });
-

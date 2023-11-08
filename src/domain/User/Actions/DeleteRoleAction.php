@@ -11,8 +11,7 @@ class DeleteRoleAction
     /**
      * Delete user action.
      *
-     * @param Role $role
-     * @return Boolean
+     * @return bool
      */
     public function __invoke(Role $role)
     {

@@ -2,17 +2,14 @@
 
 namespace Domain\Ticket\Models;
 
+use Domain\Ticket\QueryBuilders\TicketQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Domain\Ticket\QueryBuilders\TicketQueryBuilder;
-use Domain\Ticket\Models\ReplyTicket;
-
 
 class Ticket extends Model
 {
     use HasFactory,softDeletes;
-    
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +22,7 @@ class Ticket extends Model
         'problem_description',
         'email',
         'phone_number',
-        'status'
+        'status',
 
     ];
 
@@ -36,17 +33,14 @@ class Ticket extends Model
         return $this->hasMany(ReplyTicket::class);
     }
 
-
-     /**
+    /**
      * Create a new Eloquent query builder for the model.
      *
-     * @param \Illuminate\Database\Query\Builder $query
-     *
+     * @param  \Illuminate\Database\Query\Builder  $query
      * @return TicketQueryBuilder
      */
     public function newEloquentBuilder($query)
     {
         return new TicketQueryBuilder($query);
     }
-    
 }

@@ -14,8 +14,8 @@ class ModuleTableSeeder extends Seeder
             [
                 'name' => 'Dashboard',
                 'permissions' => [
-                    ['name' => 'View dashboard']
-                ]
+                    ['name' => 'View dashboard'],
+                ],
             ],
             [
                 'name' => 'User',
@@ -24,7 +24,7 @@ class ModuleTableSeeder extends Seeder
                     ['name' => 'Edit user'],
                     ['name' => 'View user'],
                     ['name' => 'Delete user'],
-                ]
+                ],
             ],
             [
                 'name' => 'Role',
@@ -33,7 +33,7 @@ class ModuleTableSeeder extends Seeder
                     ['name' => 'Edit role'],
                     ['name' => 'View role'],
                     ['name' => 'Delete role'],
-                ]
+                ],
             ],
             [
                 'name' => 'Permission',
@@ -42,7 +42,7 @@ class ModuleTableSeeder extends Seeder
                     ['name' => 'Edit permission'],
                     ['name' => 'View permission'],
                     ['name' => 'Delete permission'],
-                ]
+                ],
             ],
             [
                 'name' => 'Ticket',
@@ -51,7 +51,7 @@ class ModuleTableSeeder extends Seeder
                     ['name' => 'Edit ticket'],
                     ['name' => 'View ticket'],
                     ['name' => 'Delete ticket'],
-                ]
+                ],
             ],
         ];
 
