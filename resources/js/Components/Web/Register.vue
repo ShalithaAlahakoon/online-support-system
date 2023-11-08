@@ -124,23 +124,7 @@ const submit = () => {
                         </div>
                     </form>
 
-                    <div class="text-sm sm:text-base font-normal text-white text-center xl:text-left mt-3">OR</div>
-                    <div class="flex justify-center mt-10 my-20 gap-5 xl:justify-start">
-                        <a :href="route('auth.google')"
-                           class="social-button" id="google-connect" target="_blank">
-                            <img src="https://gel.imperiallearning.co.uk/wp-content/uploads/2023/05/Social-Login-Google.png"
-                                 alt="google">
-                        </a>
-                        <a :href="route('auth.facebook')"
-                           class="social-button" id="facebook-connect" target="_blank">
-                            <img src="https://gel.imperiallearning.co.uk/wp-content/uploads/2023/05/Social-Login-Facebook.png"
-                                 alt="facebook">
-                        </a>
-                        <a :href="route('auth.linkedin')" class="social-button" id="facebook-connect" target="_blank">
-                            <img src="https://gel.imperiallearning.co.uk/wp-content/uploads/2023/05/Social-Login-Linkedin.png"
-                                 alt="linkedin">
-                        </a>
-                    </div>
+                    
 
                 </div>
                 <!--Right section-->
@@ -180,7 +164,7 @@ const submit = () => {
 
 .login::before {
     left: 0;
-    background-color: #5B51E1;
+    background-color: #14532d;
 }
 
 
@@ -204,7 +188,7 @@ const submit = () => {
 
     .login::after {
         right: 0;
-        background-color: #5B51E1;
+        background-color: #14532d;
     }
 }
 

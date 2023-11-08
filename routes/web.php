@@ -29,6 +29,10 @@ use Inertia\Inertia;
 Route::model('user', User::class);
 Route::model('role', Role::class);
 Route::model('ticket', Ticket::class);
+//fallback
+Route::fallback(function () {
+    return Inertia::render('Welcome');
+});
 
 // Artisan
 Route::get('/cache-clear', function () {
@@ -45,22 +49,22 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/track', function () {
+    return Inertia::render('Ticket/Track' , [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('track');
+
+Route::post('/status', [TicketPageController::class, 'status'])
+    ->name('ticket.status');
 
 Route::post('/ticket', [TicketPageController::class, 'store'])
     ->name('ticket.page.store');
 
-// Socialite authentication
-Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])
-    ->name('auth.google');
-Route::get('auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
 
-Route::get('/auth/facebook', [SocialiteController::class, 'redirectToFacebook'])
-    ->name('auth.facebook');
-Route::get('auth/facebook/callback', [SocialiteController::class, 'handleFacebookCallback']);
-
-Route::get('/auth/linkedin', [SocialiteController::class, 'redirectToLinkedin'])
-    ->name('auth.linkedin');
-Route::get('auth/linkedin/callback', [SocialiteController::class, 'handleLinkedinCallback']);
 
 // Login as user
 Route::get('/user/{user}/login-as-user', [UserPageController::class, 'loginAsUser'])

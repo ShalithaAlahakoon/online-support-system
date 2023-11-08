@@ -53,4 +53,6 @@ class TicketQueryBuilder extends Builder
             )
             ->orderBy('updated_at', 'desc');
     }
+
+    
 }

@@ -14,7 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Laravel\Jetstream\Jetstream;
-
+use Illuminate\Support\Facades\DB;
 class TicketPageController extends Controller
 {
     /**
@@ -148,4 +148,23 @@ class TicketPageController extends Controller
             ]);
         }
     }
+    
+    /**
+     * check status
+     */
+    public function status(Request $request)
+    {
+        $ticket = DB::select('SELECT * FROM tickets WHERE reference_number = ?', [$request->reference_number]);
+        if ($ticket) {
+            return Jetstream::inertia()->render(request(), 'Ticket/Track', [
+                'ticket' => $ticket,
+            ]);
+        } else {
+            return Jetstream::inertia()->render(request(), 'Ticket/Track', [
+                'error' => 'Ticket not found.',
+            ]);
+        }
+    }
+
+   
 }

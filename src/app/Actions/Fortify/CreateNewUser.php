@@ -35,11 +35,10 @@ class CreateNewUser implements CreatesNewUsers
         $validator->validate();
 
         return User::create([
-            'fname' => $input['fname'],
-            'lname' => $input['lname'],
-            'name' => $input['name'],
+            'name' => $input['fname'],
             'email' => $input['email'],
             'status' => 1,
+            'role_id' => 3,
             'created_by' => 'NON-Admin',
             'password' => Hash::make($input['password']),
         ]);

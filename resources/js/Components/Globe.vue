@@ -68,7 +68,7 @@ onMounted(() => {
             // - Material that the dots will be made of.
             const pointGeometry = new THREE.SphereGeometry(0.5, 1, 1);
             const pointMaterial = new THREE.MeshBasicMaterial({
-                color: "#5B51E1",
+                color: "#14532d",
             });
 
             for (let point of points) {

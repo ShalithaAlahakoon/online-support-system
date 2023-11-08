@@ -49,8 +49,6 @@
     }
   }
 
-  
-
   // Cleanup media query listener on component unmount
   onBeforeUnmount(() => {
     mediaQuery.removeEventListener('change', handleMediaQueryChange);
@@ -59,7 +57,7 @@
 
 
 <template>
-   <nav class="sticky top-0 bg-white z-10 nav flex flex-wrap items-center justify-between px-5 md:px-10">
+   <nav class="sticky top-0 bg-white z-10 nav flex flex-wrap items-center justify-end px-5 md:px-10">
       <input class="menu-btn hidden" type="checkbox" id="menu-btn">
       <label class="menu-icon block cursor-pointer lg:hidden py-4 px-2 relative select-none" for="menu-btn">
       <span class="navicon bg-grey-darkest flex items-center relative"></span>
@@ -70,6 +68,10 @@
             <li v-if="$page.props.auth.user" class="block lg:hidden">
                <Link :href="route('dashboard')" class="block lg:hidden text-sm text-primary font-semibold">
                Dashboard</Link>
+            </li>
+            <li v-if="!$page.props.auth.user" class="block lg:hidden">
+               <Link :href="route('track')" class="block lg:hidden text-sm text-primary font-semibold">
+               Track ticket</Link>
             </li>
             <li v-if="!$page.props.auth.user" class="block lg:hidden">
                <Link :href="route('register')" class="block lg:hidden text-sm text-primary font-semibold">
@@ -85,6 +87,14 @@
             <button type="button"
                class="text-center text-sm text-white font-semibold bg-purple-200 border border-primary rounded-full px-8 py-2 my-5">
             Dashboard
+            </button>
+            </Link>
+         </li>
+         <li class="border-none hidden lg:block">
+            <Link v-if="!$page.props.auth.user" :href="route('track')">
+            <button type="button"
+               class="text-center text-sm text-primary font-semibold bg-white border border-primary  rounded-full px-8 py-2 my-0 lg:my-5">
+            Track ticket
             </button>
             </Link>
          </li>
@@ -162,7 +172,7 @@
    height: 100%;
    transition: all .20s ease-out;
    content: '';
-   background: #5B51E1;
+   background: #14532d;
    }
    .navicon::before {
    top: 5px;
@@ -210,7 +220,7 @@
    }
    .close-icon {
    font-size: 15px;
-   color: #5B51E1;
+   color: #14532d;
    font-weight: bold;
    transform: scaleX(1.4);
    margin-right: 12px;

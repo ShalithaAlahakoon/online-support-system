@@ -18,7 +18,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: '#5B51E1',
+                primary: '#14532d',
 
                 gold: {
                     900: '#E1B051'
@@ -34,7 +34,7 @@ module.exports = {
                 },
                 purple: {
                     100: '#E7E6F4',
-                    200: '#5B51E1',
+                    200: '#14532d',
                     300: '#E2E9FF',
                     400: '#ECEBFF',
                     500: '#CBBADC',

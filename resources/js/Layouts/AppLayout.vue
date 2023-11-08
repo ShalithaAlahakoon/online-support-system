@@ -38,7 +38,7 @@ defineProps({
 </template>
 <style>
 .header-style{
-    background-color: #5b51e1;
+    background-color: #14532d;
     color: #fff;
     padding: 1%;
     border-top-left-radius: 12px;
