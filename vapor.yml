@@ -1,0 +1,49 @@
+id: 48487
+name: gel-new
+environments:
+  develop:
+    domain: develop-gel.imperiallearning.org
+    storage: develop-gel-bucket
+    timeout: 300
+    database: gel_new_develop
+    memory: 1024
+    cli-memory: 512
+    runtime: 'php-8.2:al2'
+    build:
+      - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
+      - 'php artisan event:cache'
+      - 'npm install'
+      - 'npm run build'
+      - 'rm -rf node_modules'
+    deploy:
+      - 'php artisan migrate:fresh --seed'
+  production:
+    domain: production-gel.imperiallearning.org
+    storage: production-gel-bucket
+    database: gel_new_production
+    memory: 1024
+    cli-memory: 512
+    runtime: 'php-8.2:al2'
+    build:
+      - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
+      - 'php artisan event:cache'
+      - 'npm install'
+      - 'npm run build'
+      - 'rm -rf node_modules'
+    deploy:
+      - 'php artisan migrate --force'
+  staging:
+    domain: staging-gel.imperiallearning.org
+    storage: staging-gel-bucket
+    database: gel_new
+    memory: 1024
+    cli-memory: 512
+    runtime: 'php-8.2:al2'
+    build:
+      - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
+      - 'php artisan event:cache'
+      - 'npm install'
+      - 'npm run build'
+      - 'rm -rf node_modules'
+    deploy:
+      - 'php artisan migrate --force'

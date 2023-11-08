@@ -1,0 +1,81 @@
+pipelines:
+  default:
+    - step:
+        name: Install dependencies
+        image: php:8.1
+        caches:
+          - composer
+        script:
+          - apt-get update && apt-get install -y libzip-dev zip
+          - docker-php-ext-install pdo_mysql zip
+          - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          - composer install --no-interaction --prefer-dist --optimize-autoloader
+
+    - step:
+        name: Run tests
+        image: php:8.1
+        script:
+          - apt-get update && apt-get install -y libzip-dev zip
+          - docker-php-ext-install pdo_mysql zip
+          - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          - composer install --no-interaction --prefer-dist --optimize-autoloader
+          - cp .env.example .env
+          - php artisan sail:install
+
+  branches:
+    develop:
+      - step:
+          name: Install dependencies & Deploy to develop
+          image: php:8.1
+          caches:
+            - composer
+          script:
+            - apt-get update && apt-get install -y libzip-dev zip
+            - docker-php-ext-install pdo_mysql zip
+            - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            - composer install --no-interaction --prefer-dist --optimize-autoloader
+            - echo "Installing Node.js and npm"
+            - curl -sL https://deb.nodesource.com/setup_18.x | bash -
+            - apt-get install -y nodejs
+            - node --version
+            - npm --version
+            - echo "Setting up Vapor credentials"
+            - ./vendor/bin/vapor deploy develop --commit="$BITBUCKET_COMMIT"
+
+    staging:
+      - step:
+          name: Install dependencies & Deploy to staging
+          image: php:8.1
+          caches:
+            - composer
+          script:
+            - apt-get update && apt-get install -y libzip-dev zip
+            - docker-php-ext-install pdo_mysql zip
+            - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            - composer install --no-interaction --prefer-dist --optimize-autoloader
+            - echo "Installing Node.js and npm"
+            - curl -sL https://deb.nodesource.com/setup_18.x | bash -
+            - apt-get install -y nodejs
+            - node --version
+            - npm --version
+            - echo "Setting up Vapor credentials"
+            - ./vendor/bin/vapor deploy staging --commit="$BITBUCKET_COMMIT"
+
+    master:
+      - step:
+          name: Install dependencies & Deploy to production
+          image: php:8.1
+          caches:
+            - composer
+          script:
+            - apt-get update && apt-get install -y libzip-dev zip
+            - docker-php-ext-install pdo_mysql zip
+            - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            - composer install --no-interaction --prefer-dist --optimize-autoloader
+            - echo "Installing Node.js and npm"
+            - curl -sL https://deb.nodesource.com/setup_18.x | bash -
+            - apt-get install -y nodejs
+            - node --version
+            - npm --version
+            - echo "Setting up Vapor credentials"
+            - ./vendor/bin/vapor deploy production --commit="$BITBUCKET_COMMIT"

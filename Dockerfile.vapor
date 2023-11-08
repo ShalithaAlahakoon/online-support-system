@@ -1,0 +1,7 @@
+FROM laravelsail/php80-composer:latest
+
+# Install the Vapor CLI
+RUN composer global require laravel/vapor-cli
+
+# Add the Vapor CLI to the PATH
+ENV PATH="/root/.composer/vendor/bin:${PATH}"
