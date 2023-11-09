@@ -4,12 +4,12 @@ import InputError from "@/Components/InputError.vue";
 import { ref, defineProps } from "vue";
 import notify from "notiwind";
 //import image from "../../assets/images/hero.png";
-const props = {
+const props = defineProps({
     ticket: {
         type: Object,
         default: null,
     },
-}
+});
 const form = useForm({
   _method: "POST",
   reference_number: "",
@@ -25,7 +25,6 @@ const supportTicket = async () => {
       errorBag: "newTicket",
       onSuccess: () => {
         form.reset();
-        console.log("success");
         console.log(props.ticket);
       },
     });

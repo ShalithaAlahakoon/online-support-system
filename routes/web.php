@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\RolePageController;
-use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\TicketPageController;
 // models
 use App\Http\Controllers\UserPageController;
@@ -50,7 +49,7 @@ Route::get('/', function () {
     ]);
 });
 Route::get('/track', function () {
-    return Inertia::render('Ticket/Track' , [
+    return Inertia::render('Ticket/Track', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -63,8 +62,6 @@ Route::post('/status', [TicketPageController::class, 'status'])
 
 Route::post('/ticket', [TicketPageController::class, 'store'])
     ->name('ticket.page.store');
-
-
 
 // Login as user
 Route::get('/user/{user}/login-as-user', [UserPageController::class, 'loginAsUser'])

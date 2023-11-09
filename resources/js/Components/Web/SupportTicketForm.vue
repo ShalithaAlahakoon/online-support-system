@@ -1,7 +1,6 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
-//import image from "../../assets/images/hero.png";
+import { useForm } from "@inertiajs/vue3";
 
 const form = useForm({
   _method: "POST",
@@ -53,7 +52,7 @@ const supportTicket = async () => {
         </div>
         <div class="grid xl:grid-cols-2 sm:grid-cols-1 gap-4 pb-10">
           <div>
-            <div class="mt-10 rounded-3 flex justify-center  mx-auto bg-white shadow-xl ">
+            <div class="mt-10 rounded-3 flex justify-center mx-auto bg-white shadow-xl">
               <div class="w-4/5 mb-10">
                 <div class="relative text-center lg:text-left mt-10">
                   <input
@@ -126,8 +125,15 @@ const supportTicket = async () => {
               >
             </div>
           </div>
-          <div class=" xl:block sm:hidden">
-            <img :src="$page.props.assetURL ? $page.props.assetURL + '/img/help.png':'../../img/help.png'" alt="">
+          <div class="xl:block sm:hidden">
+            <img
+              :src="
+                $page.props.assetURL
+                  ? $page.props.assetURL + '/img/help.png'
+                  : '../../img/help.png'
+              "
+              alt=""
+            />
           </div>
         </div>
       </div>

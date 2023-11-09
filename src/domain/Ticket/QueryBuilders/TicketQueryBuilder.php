@@ -54,5 +54,11 @@ class TicketQueryBuilder extends Builder
             ->orderBy('updated_at', 'desc');
     }
 
-    
+    public function getTicketByReference($request): self
+    {
+        return $this
+            ->select('*')
+            ->with('replyTicket')
+            ->where('reference_number', $request->reference_number);
+    }
 }
