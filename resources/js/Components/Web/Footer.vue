@@ -6,16 +6,16 @@
                     <div class="font-normal text-xl text-black-600">Contact</div>
                     <div class="mt-4 lg:max-w-sm">
                         <div class="text-sm font-normal text-black-600 text-center lg:text-start">
-                            Call Us +9477-6850-715
+                            Call Us +9471 159 4026
                         </div>
                         <div class="mt-4 text-sm font-normal text-black-600 text-center lg:text-start">
-                            Whatsapp Us +9477-6850-715
+                            Whatsapp Us +9471 159 4025
                         </div>
                         <div class="mt-4 text-sm font-normal text-black-600 text-center lg:text-start">
                             Support@OnlineSupport.com
                         </div>
                         <div class="mt-4 text-sm font-normal text-black-600 text-center lg:text-start">
-                            Sri Lanka, Colombo
+                            Sri Lanka
                         </div>
                     </div>
                 </div>

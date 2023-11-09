@@ -12,7 +12,7 @@ const fullYear = ref(new Date().getFullYear() + ",");
                         ©
                         {{ fullYear }}
                         made with <i class="fa fa-heart"></i> by
-                        <a href="" class="font-semibold text-slate-700 dark:text-white" target="_blank">OnlineSupport</a>
+                        <a href="" class="font-semibold text-slate-700 dark:text-white" target="_blank">ShalithaAlahakoon</a>
                     </div>
                 </div>
                 <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
